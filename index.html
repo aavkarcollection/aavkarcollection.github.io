@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AAVKAR Collection — Kids Fashion, Bardoli</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Baloo+2:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--sky:#3BB8F0;--sky-l:#D6F0FC;--rose:#F0506E;--rose-l:#FFE0E6;--yellow:#FFCA28;--yellow-l:#FFF8E1;--mint:#3ECFA4;--mint-l:#D8F8EE;--purple:#9B59D0;--purple-l:#EFE5FA;--cream:#FAFBFF;--dark:#1A1F3C;--text:#2D3561;--muted:#7B85B0;--border:rgba(59,184,240,0.18)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Nunito',sans-serif;background:var(--cream);color:var(--text);overflow-x:hidden}
+::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:#f0f5ff}::-webkit-scrollbar-thumb{background:var(--sky);border-radius:3px}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:66px;background:rgba(255,255,255,0.95);backdrop-filter:blur(14px);border-bottom:2px solid rgba(59,184,240,0.12);transition:box-shadow 0.3s}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.logo-icon{width:38px;height:38px;border-radius:11px;background:linear-gradient(135deg,var(--sky),var(--purple));display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.logo-text{font-family:'Baloo 2',cursive;font-size:18px;font-weight:800;color:var(--dark);line-height:1.1}
+.logo-text span{color:var(--sky)}
+.logo-sub{font-size:10px;font-weight:600;letter-spacing:0.1em;color:var(--muted);text-transform:uppercase}
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{font-size:13px;font-weight:700;color:var(--text);text-decoration:none;transition:color 0.2s;position:relative}
+.nav-links a:hover{color:var(--sky)}
+.nav-links a::after{content:'';position:absolute;bottom:-2px;left:0;width:0;height:2px;background:var(--sky);border-radius:2px;transition:width 0.3s}
+.nav-links a:hover::after{width:100%}
+.nav-wa{display:flex;align-items:center;gap:7px;font-size:13px;font-weight:700;color:#fff;background:linear-gradient(135deg,#25D366,#1aab55);border:none;padding:9px 18px;border-radius:50px;cursor:pointer;text-decoration:none;box-shadow:0 4px 14px rgba(37,211,102,0.3);transition:transform 0.2s}
+.nav-wa:hover{transform:translateY(-2px)}
+.hamburger{display:none;flex-direction:column;gap:4px;cursor:pointer;background:none;border:none;padding:6px}
+.hamburger span{display:block;width:22px;height:2px;background:var(--dark);border-radius:2px}
+#mob-nav{display:none;position:fixed;inset:0;z-index:190;background:#fff;padding:80px 32px 32px;flex-direction:column;gap:18px}
+#mob-nav a{font-family:'Baloo 2',cursive;font-size:26px;font-weight:700;color:var(--dark);text-decoration:none;border-bottom:2px dashed rgba(59,184,240,0.2);padding-bottom:14px}
+.mob-close{position:absolute;top:20px;right:24px;background:none;border:none;font-size:28px;cursor:pointer;color:var(--dark)}
+
+/* HERO */
+.hero{min-height:100vh;padding-top:66px;display:grid;grid-template-columns:1fr 1fr;overflow:hidden;background:linear-gradient(145deg,#EFF6FF 0%,#FFF0F5 50%,#F0FFF9 100%)}
+.hero-left{display:flex;flex-direction:column;justify-content:center;padding:60px 44px 60px 68px}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--sky-l);border:1.5px solid rgba(59,184,240,0.3);padding:6px 15px;border-radius:50px;font-size:12px;font-weight:700;color:var(--sky);margin-bottom:20px;width:fit-content;opacity:0;animation:popIn 0.6s 0.2s cubic-bezier(0.34,1.56,0.64,1) forwards}
+.bdot{width:8px;height:8px;border-radius:50%;background:var(--sky);animation:blink 1.5s infinite}
+.hero-title{font-family:'Baloo 2',cursive;font-size:clamp(36px,5vw,66px);font-weight:800;line-height:1.1;color:var(--dark);margin-bottom:16px;opacity:0;animation:fadeUp 0.8s 0.35s forwards}
+.csky{color:var(--sky)}.crose{color:var(--rose)}
+.hero-desc{font-size:15px;line-height:1.8;color:var(--muted);max-width:400px;margin-bottom:30px;opacity:0;animation:fadeUp 0.8s 0.5s forwards}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;opacity:0;animation:fadeUp 0.8s 0.65s forwards}
+.btn-p{display:inline-flex;align-items:center;gap:7px;font-family:'Nunito',sans-serif;font-size:14px;font-weight:700;color:#fff;background:linear-gradient(135deg,var(--sky),#2196d8);padding:13px 26px;border-radius:50px;border:none;cursor:pointer;text-decoration:none;box-shadow:0 5px 20px rgba(59,184,240,0.35);transition:transform 0.2s}
+.btn-p:hover{transform:translateY(-2px)}
+.btn-s{display:inline-flex;align-items:center;gap:7px;font-size:14px;font-weight:700;color:var(--rose);background:var(--rose-l);padding:13px 26px;border-radius:50px;border:none;cursor:pointer;text-decoration:none;transition:background 0.2s,transform 0.2s}
+.btn-s:hover{background:#FFD0D8;transform:translateY(-2px)}
+.hero-stats{display:flex;gap:28px;margin-top:40px;padding-top:30px;border-top:2px dashed rgba(59,184,240,0.2);opacity:0;animation:fadeUp 0.8s 0.8s forwards}
+.stat-num{font-family:'Baloo 2',cursive;font-size:30px;font-weight:800;color:var(--dark);line-height:1}
+.stat-lbl{font-size:11px;font-weight:600;color:var(--muted);margin-top:4px;text-transform:uppercase;letter-spacing:0.06em}
+.hero-right{display:flex;align-items:center;justify-content:center;padding:48px 36px;opacity:0;animation:fadeIn 1s 0.4s forwards}
+.hero-circle{width:min(370px,80%);aspect-ratio:1;border-radius:50%;background:linear-gradient(145deg,rgba(59,184,240,0.12),rgba(240,80,110,0.08));border:2px dashed rgba(59,184,240,0.2);display:flex;align-items:center;justify-content:center;position:relative;flex-shrink:0}
+.hero-circle-inner{width:78%;aspect-ratio:1;border-radius:50%;background:linear-gradient(145deg,rgba(59,184,240,0.15),rgba(155,89,208,0.1));display:flex;align-items:center;justify-content:center;overflow:hidden}
+.fpill{position:absolute;display:flex;align-items:center;gap:6px;background:#fff;border-radius:50px;padding:7px 13px;font-size:12px;font-weight:700;box-shadow:0 4px 18px rgba(0,0,0,0.08);white-space:nowrap;animation:float 3s ease-in-out infinite}
+.p1{top:-8px;left:50%;transform:translateX(-50%);animation-delay:0s;color:var(--sky)}
+.p2{right:-12px;top:27%;animation-delay:0.5s;color:var(--rose)}
+.p3{bottom:-8px;right:17%;animation-delay:1s;color:var(--mint)}
+.p4{left:-12px;top:27%;animation-delay:1.5s;color:var(--purple)}
+.kids-svg{width:85%;filter:drop-shadow(0 8px 20px rgba(0,0,0,0.1))}
+.age-badge{position:absolute;bottom:16px;right:0;background:var(--yellow);border-radius:14px;padding:10px 15px;box-shadow:0 5px 16px rgba(255,202,40,0.4);text-align:center;animation:float 4s ease-in-out infinite 0.3s}
+.age-badge-num{font-family:'Baloo 2',cursive;font-size:20px;font-weight:800;color:var(--dark);line-height:1}
+.age-badge-text{font-size:10px;font-weight:700;color:rgba(26,31,60,0.65)}
+
+/* MARQUEE */
+.mq-wrap{background:linear-gradient(90deg,var(--sky),var(--purple),var(--rose),var(--mint));padding:12px 0;overflow:hidden}
+.mq-track{display:flex;animation:marquee 22s linear infinite;white-space:nowrap}
+.mq-item{display:flex;align-items:center;gap:18px;padding:0 22px;font-size:12px;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.92);flex-shrink:0}
+
+/* SECTION */
+.sec{padding:72px 80px}
+.sec-tag{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;color:var(--sky);margin-bottom:12px}
+.sec-tag::before{content:'';display:inline-block;width:24px;height:2px;background:var(--sky);border-radius:2px}
+.sec-title{font-family:'Baloo 2',cursive;font-size:clamp(26px,3vw,42px);font-weight:800;line-height:1.15;color:var(--dark)}
+
+/* CATEGORIES */
+.cat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:40px}
+.cat-card{border-radius:20px;overflow:hidden;cursor:pointer;position:relative;min-height:210px;display:flex;flex-direction:column;justify-content:flex-end;transition:transform 0.3s;border:2px solid rgba(255,255,255,0.5)}
+.cat-card:hover{transform:scale(1.02)}
+.cat-card.wide{grid-column:span 2}
+.cat-card.tall{grid-row:span 2;min-height:460px}
+.cat-over{position:absolute;inset:0;background:linear-gradient(to top,rgba(26,31,60,0.78) 0%,transparent 55%)}
+.cat-deco{position:absolute;right:-6px;top:-6px;font-size:70px;opacity:0.13;line-height:1}
+.cat-card.wide .cat-deco,.cat-card.tall .cat-deco{font-size:115px}
+.cat-cnt{position:relative;z-index:2;padding:20px}
+.cat-tbadge{display:inline-block;font-size:10px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;border:1.5px solid rgba(255,255,255,0.5);color:rgba(255,255,255,0.9);padding:3px 9px;border-radius:50px;margin-bottom:6px}
+.cat-name{font-family:'Baloo 2',cursive;font-size:22px;font-weight:800;color:#fff;margin-bottom:3px;line-height:1.1}
+.cat-card.wide .cat-name,.cat-card.tall .cat-name{font-size:28px}
+.cat-sub{font-size:12px;color:rgba(255,255,255,0.7);line-height:1.5}
+
+/* WHY */
+.why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:40px}
+.why-card{text-align:center;padding:26px 16px;border-radius:20px;border:2px solid var(--border);background:#fff;transition:transform 0.3s,box-shadow 0.3s}
+.why-card:hover{transform:translateY(-5px);box-shadow:0 14px 32px rgba(59,184,240,0.12)}
+.why-icon{width:56px;height:56px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:26px;margin:0 auto 12px}
+.why-title{font-size:15px;font-weight:800;color:var(--dark);margin-bottom:6px}
+.why-desc{font-size:13px;color:var(--muted);line-height:1.6}
+
+/* ABOUT */
+.about{display:grid;grid-template-columns:1fr 1fr}
+.about-l{background:linear-gradient(145deg,var(--dark),#2B3080);padding:68px 76px;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden}
+.about-bgnum{font-family:'Baloo 2',cursive;font-size:170px;font-weight:800;color:rgba(255,255,255,0.04);position:absolute;bottom:-18px;right:-8px;line-height:1}
+.est-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,202,40,0.15);border:1.5px solid rgba(255,202,40,0.3);border-radius:50px;padding:7px 15px;font-size:12px;font-weight:800;color:var(--yellow);margin-bottom:18px;width:fit-content}
+.about-title{font-family:'Baloo 2',cursive;font-size:clamp(30px,3.5vw,48px);font-weight:800;color:#fff;line-height:1.1;margin-bottom:16px}
+.about-title .hl{color:var(--yellow)}
+.about-desc{font-size:14px;line-height:1.9;color:rgba(255,255,255,0.55);margin-bottom:16px}
+.about-nums{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:10px}
+.abn{border-left:3px solid var(--yellow);padding-left:13px}
+.abn-num{font-family:'Baloo 2',cursive;font-size:28px;font-weight:800;color:var(--yellow);line-height:1}
+.abn-lbl{font-size:11px;color:rgba(255,255,255,0.45);margin-top:3px}
+.about-r{background:var(--yellow-l);padding:68px 76px;display:flex;flex-direction:column;justify-content:center}
+.milestone{display:flex;gap:16px;margin-bottom:22px;padding-bottom:22px;border-bottom:2px dashed rgba(59,184,240,0.2)}
+.milestone:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.ms-year{font-family:'Baloo 2',cursive;font-size:16px;font-weight:800;color:var(--sky);min-width:50px;padding-top:2px}
+.ms-title{font-size:14px;font-weight:800;color:var(--dark);margin-bottom:3px}
+.ms-desc{font-size:13px;color:var(--muted);line-height:1.6}
+
+/* TESTIMONIALS */
+.test-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:40px}
+.test-card{background:#fff;border-radius:20px;padding:24px;border:2px solid var(--border);position:relative;transition:transform 0.3s}
+.test-card:hover{transform:translateY(-4px);box-shadow:0 10px 28px rgba(59,184,240,0.1)}
+.test-card::before{content:'❝';position:absolute;top:12px;right:16px;font-size:40px;color:rgba(59,184,240,0.1);line-height:1}
+.stars{font-size:13px;letter-spacing:3px;margin-bottom:11px}
+.test-txt{font-size:13px;line-height:1.8;color:var(--muted);margin-bottom:16px;font-style:italic}
+.test-auth{display:flex;align-items:center;gap:10px}
+.test-av{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:800;font-family:'Baloo 2',cursive}
+.test-name{font-size:13px;font-weight:800;color:var(--dark)}
+.test-loc{font-size:11px;color:var(--muted)}
+
+/* CONTACT */
+.contact{display:grid;grid-template-columns:1fr 1fr}
+.contact-l{background:linear-gradient(145deg,var(--dark),#2B3080);padding:68px 76px}
+.contact-r{background:#fff;padding:68px 76px}
+.contact-title{font-family:'Baloo 2',cursive;font-size:clamp(26px,3vw,40px);font-weight:800;color:#fff;line-height:1.15;margin-bottom:9px}
+.contact-sub{font-size:14px;color:rgba(255,255,255,0.5);margin-bottom:32px;line-height:1.7}
+.info-item{display:flex;gap:13px;margin-bottom:22px;align-items:flex-start}
+.info-icon{width:42px;height:42px;border-radius:13px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:18px}
+.info-lbl{font-size:10px;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:var(--sky);margin-bottom:2px}
+.info-val{font-size:14px;color:rgba(255,255,255,0.8);line-height:1.6}
+.info-val a{color:var(--yellow);text-decoration:none}
+.info-val a:hover{text-decoration:underline}
+.form-title{font-family:'Baloo 2',cursive;font-size:24px;font-weight:800;color:var(--dark);margin-bottom:22px}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.fg{margin-bottom:12px}
+.fg label{display:block;font-size:11px;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.fg input,.fg textarea,.fg select{width:100%;font-family:'Nunito',sans-serif;font-size:14px;font-weight:600;background:var(--cream);border:2px solid rgba(59,184,240,0.2);border-radius:11px;padding:11px 14px;outline:none;color:var(--dark);transition:border-color 0.2s}
+.fg input:focus,.fg textarea:focus,.fg select:focus{border-color:var(--sky);box-shadow:0 0 0 3px rgba(59,184,240,0.08)}
+.fg textarea{resize:vertical;min-height:76px}
+.fg input::placeholder,.fg textarea::placeholder{color:var(--muted);font-weight:400}
+.btn-sub{width:100%;font-family:'Nunito',sans-serif;font-size:14px;font-weight:800;color:#fff;background:linear-gradient(135deg,var(--sky),var(--purple));border:none;border-radius:50px;padding:14px;cursor:pointer;box-shadow:0 5px 20px rgba(59,184,240,0.3);transition:transform 0.2s}
+.btn-sub:hover{transform:translateY(-2px)}
+.fsuccess{display:none;text-align:center;padding:32px 0}
+.fsuccess.show{display:block}
+.fs-emoji{font-size:48px;margin-bottom:10px}
+.fs-msg{font-family:'Baloo 2',cursive;font-size:22px;font-weight:800;color:var(--dark)}
+.fs-sub{font-size:13px;color:var(--muted);margin-top:6px}
+
+/* MAP */
+.map-wrap{height:280px;position:relative}
+.map-wrap iframe{width:100%;height:100%;border:none}
+.map-tag{position:absolute;top:16px;left:20px;z-index:10;background:#fff;border-radius:50px;padding:10px 17px;display:flex;align-items:center;gap:8px;box-shadow:0 4px 16px rgba(0,0,0,0.12);font-size:13px;font-weight:800;color:var(--dark)}
+.map-dot{width:8px;height:8px;border-radius:50%;background:var(--sky);animation:blink 1.5s infinite}
+
+/* FOOTER */
+footer{background:var(--dark);padding:44px 80px 22px}
+.foot-top{display:grid;grid-template-columns:2fr 1fr 1fr;gap:36px;margin-bottom:32px;padding-bottom:32px;border-bottom:2px solid rgba(255,255,255,0.06)}
+.foot-logo{font-family:'Baloo 2',cursive;font-size:22px;font-weight:800;color:#fff;margin-bottom:10px}
+.foot-logo span{color:var(--sky)}
+.foot-about{font-size:13px;color:rgba(255,255,255,0.4);line-height:1.7;max-width:250px}
+.foot-col-title{font-size:11px;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;color:var(--sky);margin-bottom:14px}
+.foot-links{list-style:none;display:flex;flex-direction:column;gap:8px}
+.foot-links a{font-size:13px;color:rgba(255,255,255,0.45);text-decoration:none;font-weight:600;transition:color 0.2s}
+.foot-links a:hover{color:var(--yellow)}
+.foot-bottom{display:flex;justify-content:space-between;font-size:12px;color:rgba(255,255,255,0.25);font-weight:600}
+
+/* FLOAT */
+.sfloat{position:fixed;right:18px;bottom:18px;display:flex;flex-direction:column;gap:8px;z-index:150}
+.sfbtn{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 4px 16px rgba(0,0,0,0.2);transition:transform 0.2s}
+.sfbtn:hover{transform:translateY(-4px) scale(1.08)}
+.sf-wa{background:linear-gradient(135deg,#25D366,#1aab55)}
+.sf-ig{background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888)}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes popIn{from{opacity:0;transform:scale(0.7)}to{opacity:1;transform:scale(1)}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes blink{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.6;transform:scale(0.8)}}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity 0.7s,transform 0.7s}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
+
+@media(max-width:860px){
+  nav{padding:0 20px}.nav-links,.nav-wa{display:none}.hamburger{display:flex}
+  .hero{grid-template-columns:1fr;min-height:auto}.hero-left{padding:36px 22px}.hero-right{min-height:320px}.hero-stats{gap:16px;flex-wrap:wrap}
+  .sec{padding:52px 22px}
+  .cat-grid{grid-template-columns:1fr 1fr}.cat-card.wide{grid-column:span 2}.cat-card.tall{grid-row:auto;min-height:190px}
+  .why-grid{grid-template-columns:repeat(2,1fr)}
+  .about{grid-template-columns:1fr}.about-l,.about-r{padding:48px 22px}
+  .test-grid{grid-template-columns:1fr}
+  .contact{grid-template-columns:1fr}.contact-l,.contact-r{padding:48px 22px}
+  .frow{grid-template-columns:1fr}
+  footer{padding:40px 22px 18px}.foot-top{grid-template-columns:1fr 1fr}.foot-bottom{flex-direction:column;gap:5px;text-align:center}
+}
+@media(max-width:540px){
+  .cat-grid{grid-template-columns:1fr}.cat-card.wide{grid-column:span 1}
+  .why-grid{grid-template-columns:1fr}.foot-top{grid-template-columns:1fr}
+  .hero-circle{width:240px}.fpill{font-size:11px;padding:5px 10px}
+}
+</style>
+</head>
+<body>
+
+<nav id="main-nav">
+  <a href="#" class="logo">
+    <div class="logo-icon">🧒</div>
+    <div>
+      <div class="logo-text">AAVKAR <span>Collection</span></div>
+      <div class="logo-sub">Kids Fashion · Bardoli · Est. 1985</div>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#categories">Categories</a></li>
+    <li><a href="#about">Our Story</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="https://wa.me/919586555156" class="nav-wa" target="_blank">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    WhatsApp Us
+  </a>
+  <button class="hamburger" onclick="openMob()"><span></span><span></span><span></span></button>
+</nav>
+
+<div id="mob-nav">
+  <button class="mob-close" onclick="closeMob()">✕</button>
+  <a href="#categories" onclick="closeMob()">Categories</a>
+  <a href="#about" onclick="closeMob()">Our Story</a>
+  <a href="#contact" onclick="closeMob()">Contact</a>
+  <a href="https://wa.me/919586555156" target="_blank" style="background:linear-gradient(135deg,#25D366,#1aab55);color:#fff;border-radius:50px;padding:14px 24px;margin-top:6px;border-bottom:none;text-align:center;font-weight:700">💬 WhatsApp Us</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-left">
+    <div class="hero-badge"><div class="bdot"></div>Est. 1985 · Serving Bardoli for 40 Years! 🎉</div>
+    <h1 class="hero-title">Adorable clothes<br>for your little<br><span class="csky">⭐ superstar</span> <span class="crose">❤️</span></h1>
+    <p class="hero-desc">From newborn babies to 13-year-olds — the cutest, most comfortable kids fashion in Bardoli. Boys, Girls, Accessories & Toys!</p>
+    <div class="hero-btns">
+      <a href="#categories" class="btn-p">🛍️ Our Categories</a>
+      <a href="https://www.instagram.com/aavkar_collection" target="_blank" class="btn-s">📸 Instagram</a>
+    </div>
+    <div class="hero-stats">
+      <div><div class="stat-num">40+</div><div class="stat-lbl">Years of Trust</div></div>
+      <div><div class="stat-num">1000+</div><div class="stat-lbl">Happy Families</div></div>
+      <div><div class="stat-num">5 ★</div><div class="stat-lbl">Google Rating</div></div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-circle">
+      <div class="fpill p1">👶 Newborn</div>
+      <div class="fpill p2">👧 Girls Wear</div>
+      <div class="fpill p3">🧸 Toys</div>
+      <div class="fpill p4">👦 Boys Wear</div>
+      <div class="hero-circle-inner">
+        <svg class="kids-svg" viewBox="0 0 280 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="140" cy="150" r="130" fill="rgba(59,184,240,0.07)"/>
+          <ellipse cx="90" cy="72" rx="28" ry="30" fill="#FDDBB4"/>
+          <path d="M63 65Q65 40 90 38Q115 40 117 65Q110 50 90 48Q70 50 63 65Z" fill="#5D3A1A"/>
+          <ellipse cx="66" cy="72" rx="8" ry="12" fill="#5D3A1A" transform="rotate(-15,66,72)"/>
+          <ellipse cx="114" cy="72" rx="8" ry="12" fill="#5D3A1A" transform="rotate(15,114,72)"/>
+          <path d="M58 60Q62 55 66 60Q62 65 58 60Z" fill="#F0506E"/><path d="M74 60Q70 55 66 60Q70 65 74 60Z" fill="#F0506E"/>
+          <path d="M106 60Q110 55 114 60Q110 65 106 60Z" fill="#F0506E"/><path d="M122 60Q118 55 114 60Q118 65 122 60Z" fill="#F0506E"/>
+          <circle cx="82" cy="72" r="4" fill="#4A3020" opacity="0.8"/><circle cx="98" cy="72" r="4" fill="#4A3020" opacity="0.8"/>
+          <path d="M84 82Q90 87 96 82" stroke="#E88090" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <circle cx="84" cy="78" r="4" fill="#FFAAAA" opacity="0.4"/><circle cx="96" cy="78" r="4" fill="#FFAAAA" opacity="0.4"/>
+          <rect x="83" y="98" width="14" height="14" rx="4" fill="#FDDBB4"/>
+          <path d="M65 114Q60 118 56 160L66 162L68 200L112 200L114 162L124 160Q120 118 115 114Q108 110 98 108Q90 128 90 128Q90 128 82 108Q72 110 65 114Z" fill="#F0506E"/>
+          <path d="M82 108Q90 118 98 108" stroke="#FFE0E5" stroke-width="2" fill="none"/>
+          <path d="M56 160Q50 190 48 210Q46 220 58 220L72 222Q78 195 90 192Q102 195 108 222L122 220Q134 220 132 210Q130 190 124 160Z" fill="#F0506E"/>
+          <path d="M68 200L52 250Q49 260 56 262L62 262L72 208Z" fill="#FDDBB4"/>
+          <path d="M112 200L128 250Q131 260 124 262L118 262L108 208Z" fill="#FDDBB4"/>
+          <rect x="68" y="222" width="16" height="50" rx="6" fill="#FDDBB4"/>
+          <rect x="96" y="222" width="16" height="50" rx="6" fill="#FDDBB4"/>
+          <ellipse cx="76" cy="274" rx="12" ry="7" fill="#5D3A1A"/><ellipse cx="104" cy="274" rx="12" ry="7" fill="#5D3A1A"/>
+          <ellipse cx="195" cy="78" rx="28" ry="30" fill="#FDDBB4"/>
+          <path d="M168 68Q170 46 195 44Q220 46 222 68Q214 56 195 54Q176 56 168 68Z" fill="#3D2B1A"/>
+          <circle cx="187" cy="78" r="4" fill="#4A3020" opacity="0.8"/><circle cx="203" cy="78" r="4" fill="#4A3020" opacity="0.8"/>
+          <path d="M189 88Q195 93 201 88" stroke="#E88090" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <circle cx="188" cy="83" r="4" fill="#FFAAAA" opacity="0.35"/><circle cx="202" cy="83" r="4" fill="#FFAAAA" opacity="0.35"/>
+          <rect x="188" y="104" width="14" height="14" rx="4" fill="#FDDBB4"/>
+          <path d="M170 120Q164 124 160 166L170 168L172 204L218 204L220 168L230 166Q226 124 220 120Q212 116 202 114Q200 126 195 127Q190 126 188 114Q178 116 170 120Z" fill="#3BB8F0"/>
+          <path d="M162 148L228 148" stroke="rgba(255,255,255,0.2)" stroke-width="8"/>
+          <text x="188" y="163" fill="rgba(255,255,255,0.7)" font-size="16">⭐</text>
+          <path d="M172 204L156 252Q153 262 160 264L166 264L176 212Z" fill="#FDDBB4"/>
+          <path d="M218 204L234 252Q237 262 230 264L224 264L214 212Z" fill="#FDDBB4"/>
+          <path d="M170 204Q164 250 162 272Q160 280 172 280L184 280Q188 256 195 254Q202 256 206 280L218 280Q230 280 228 272Q226 250 220 204Z" fill="#2B5FB0"/>
+          <ellipse cx="176" cy="283" rx="14" ry="8" fill="#F0506E"/><ellipse cx="214" cy="283" rx="14" ry="8" fill="#F0506E"/>
+          <ellipse cx="140" cy="258" rx="20" ry="22" fill="#FDDBB4"/>
+          <path d="M121 245Q122 228 140 226Q158 228 159 245Q152 234 140 232Q128 234 121 245Z" fill="#8B5A2B"/>
+          <circle cx="133" cy="256" r="3" fill="#4A3020" opacity="0.8"/><circle cx="147" cy="256" r="3" fill="#4A3020" opacity="0.8"/>
+          <path d="M135 264Q140 267 145 264" stroke="#E88090" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          <path d="M122 268Q118 290 120 296L160 296Q162 290 158 268Q150 274 140 274Q130 274 122 268Z" fill="#FFCA28"/>
+          <ellipse cx="114" cy="276" rx="10" ry="8" fill="#FDDBB4"/><ellipse cx="166" cy="276" rx="10" ry="8" fill="#FDDBB4"/>
+        </svg>
+      </div>
+      <div class="age-badge"><div class="age-badge-num">0–13</div><div class="age-badge-text">Years Old</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="mq-wrap">
+  <div class="mq-track">
+    <div class="mq-item">🎀 Girls Dresses</div><div class="mq-item">👕 Boys T-Shirts</div>
+    <div class="mq-item">👶 Newborn Accessories</div><div class="mq-item">👗 Ethnic Wear</div>
+    <div class="mq-item">🧸 Toys</div><div class="mq-item">🎉 Party Wear</div>
+    <div class="mq-item">✨ Festival Specials</div><div class="mq-item">💛 Baby Rompers</div>
+    <div class="mq-item">🎀 Girls Dresses</div><div class="mq-item">👕 Boys T-Shirts</div>
+    <div class="mq-item">👶 Newborn Accessories</div><div class="mq-item">👗 Ethnic Wear</div>
+    <div class="mq-item">🧸 Toys</div><div class="mq-item">🎉 Party Wear</div>
+    <div class="mq-item">✨ Festival Specials</div><div class="mq-item">💛 Baby Rompers</div>
+  </div>
+</div>
+
+<!-- CATEGORIES -->
+<section class="sec" id="categories" style="background:linear-gradient(160deg,#EFF6FF,#FFF0F5)">
+  <div style="text-align:center">
+    <p class="sec-tag reveal" style="justify-content:center">What We Sell</p>
+    <h2 class="sec-title reveal d1">Something for <span style="color:var(--sky)">every</span> little one 💕</h2>
+  </div>
+  <div class="cat-grid">
+    <div class="cat-card tall reveal" style="background:linear-gradient(145deg,#5A1A2A,#D04070)">
+      <div class="cat-deco">👧</div><div class="cat-over"></div>
+      <div class="cat-cnt"><span class="cat-tbadge">Girls Fashion</span><p class="cat-name">Girls Wear</p><p class="cat-sub">Frocks · Gowns · Lehengas · Skirts<br>Ages 1–13 years</p></div>
+    </div>
+    <div class="cat-card reveal d1" style="background:linear-gradient(145deg,#1A2A4A,#2B5FB0)">
+      <div class="cat-deco">👦</div><div class="cat-over"></div>
+      <div class="cat-cnt"><span class="cat-tbadge">Boys Fashion</span><p class="cat-name">Boys Wear</p><p class="cat-sub">T-Shirts · Jeans · Shorts · Kurta<br>Ages 1–13 yrs</p></div>
+    </div>
+    <div class="cat-card reveal d2" style="background:linear-gradient(145deg,#3A2A1A,#C07020)">
+      <div class="cat-deco">🎀</div><div class="cat-over"></div>
+      <div class="cat-cnt"><span class="cat-tbadge">Accessories & Toys</span><p class="cat-name">Accessories & Toys</p><p class="cat-sub">Hair Clips · Bags · Toys · Socks · Hats</p></div>
+    </div>
+    <div class="cat-card wide reveal d1" style="background:linear-gradient(145deg,#1A3A2A,#2A9060)">
+      <div class="cat-deco" style="font-size:130px">👶</div><div class="cat-over"></div>
+      <div class="cat-cnt"><span class="cat-tbadge">Newborn & Baby</span><p class="cat-name">Newborn Collection</p><p class="cat-sub">Onesies · Rompers · Sleepwear · Accessories · Gift Sets — 0 to 12 months</p></div>
+    </div>
+    <div class="cat-card wide reveal d2" style="background:linear-gradient(145deg,#4A1A10,#C03020)">
+      <div class="cat-deco" style="font-size:130px">🎉</div><div class="cat-over"></div>
+      <div class="cat-cnt"><span class="cat-tbadge">Festival Special</span><p class="cat-name">Ethnic & Festival Wear</p><p class="cat-sub">Navratri · Diwali · Weddings · Birthdays — Boys & Girls</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="sec" style="background:#fff">
+  <div style="text-align:center">
+    <p class="sec-tag reveal" style="justify-content:center">Why Parents Love Us</p>
+    <h2 class="sec-title reveal d1">Bardoli's most <span style="color:var(--sky)">trusted</span> kids store 💙</h2>
+  </div>
+  <div class="why-grid">
+    <div class="why-card reveal"><div class="why-icon" style="background:var(--sky-l)">🎁</div><div class="why-title">Huge Variety</div><p class="why-desc">500+ styles for all ages — from newborn accessories to teen fashion. Always something new!</p></div>
+    <div class="why-card reveal d1"><div class="why-icon" style="background:var(--rose-l)">💎</div><div class="why-title">Soft & Safe Fabrics</div><p class="why-desc">Only skin-friendly fabrics, perfect for your child's delicate skin. Comfort first, always.</p></div>
+    <div class="why-card reveal d2"><div class="why-icon" style="background:var(--yellow-l)">💰</div><div class="why-title">Best Prices in Bardoli</div><p class="why-desc">Quality kids fashion starting from just ₹99. Great value for every budget and occasion.</p></div>
+    <div class="why-card reveal d3"><div class="why-icon" style="background:var(--mint-l)">❤️</div><div class="why-title">40 Years of Trust</div><p class="why-desc">Since 1985, thousands of families in Bardoli trust AAVKAR for their children's fashion needs.</p></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<div class="about" id="about">
+  <div class="about-l">
+    <div class="about-bgnum">1985</div>
+    <div class="est-badge">🏆 Established 1985</div>
+    <h2 class="about-title">40 Years of <span class="hl">Dressing</span> Bardoli's Kids</h2>
+    <p class="about-desc">AAVKAR Collection started in 1985 with one simple mission — to give every child in Bardoli access to beautiful, comfortable, and affordable clothing. Over four decades, we've become Bardoli's most trusted children's fashion store.</p>
+    <p class="about-desc">From a newborn's very first outfit to a teenager's festival look — we've been part of every milestone for thousands of families across Bardoli and South Gujarat.</p>
+    <div class="about-nums">
+      <div class="abn"><div class="abn-num">40+</div><div class="abn-lbl">Years of Service</div></div>
+      <div class="abn"><div class="abn-num">1000+</div><div class="abn-lbl">Families Served</div></div>
+      <div class="abn"><div class="abn-num">500+</div><div class="abn-lbl">Styles Available</div></div>
+      <div class="abn"><div class="abn-num">5 ★</div><div class="abn-lbl">Google Rating</div></div>
+    </div>
+  </div>
+  <div class="about-r">
+    <p class="sec-tag reveal">Our Journey</p>
+    <h3 class="sec-title reveal d1" style="font-size:28px;margin-bottom:26px">A legacy of <span style="color:var(--rose)">love ❤️</span></h3>
+    <div class="milestone reveal d1"><div class="ms-year">1985</div><div><div class="ms-title">🎉 AAVKAR Collection Founded</div><div class="ms-desc">Opened our first store in Bardoli with a beautiful collection of children's clothes.</div></div></div>
+    <div class="milestone reveal d2"><div class="ms-year">2000s</div><div><div class="ms-title">👶 Expanded Newborn Range</div><div class="ms-desc">Added a dedicated baby section — accessories, rompers, gift sets and more.</div></div></div>
+    <div class="milestone reveal d2"><div class="ms-year">2010s</div><div><div class="ms-title">🧸 Added Toys & Accessories</div><div class="ms-desc">Became a one-stop destination for kids — clothing, toys and accessories all in one place.</div></div></div>
+    <div class="milestone reveal d3"><div class="ms-year">2025</div><div><div class="ms-title">📱 Now on Instagram!</div><div class="ms-desc">Follow <a href="https://www.instagram.com/aavkar_collection" target="_blank" style="color:var(--sky);font-weight:700;text-decoration:none">@aavkar_collection</a> for new arrivals and festive deals.</div></div></div>
+  </div>
+</div>
+
+<!-- TESTIMONIALS -->
+<section class="sec" style="background:var(--cream)">
+  <div style="text-align:center">
+    <p class="sec-tag reveal" style="justify-content:center">Parent Reviews</p>
+    <h2 class="sec-title reveal d1">What parents say <span style="color:var(--yellow)">⭐</span></h2>
+  </div>
+  <div class="test-grid">
+    <div class="test-card reveal"><div class="stars">⭐⭐⭐⭐⭐</div><p class="test-txt">"AAVKAR Collection is the only kids' store I visit in Bardoli. The variety is amazing and prices are very reasonable. My daughter always loves what we pick here!"</p><div class="test-auth"><div class="test-av" style="background:var(--rose-l);color:var(--rose)">PM</div><div><div class="test-name">Priya Mehta</div><div class="test-loc">Bardoli, Gujarat</div></div></div></div>
+    <div class="test-card reveal d1"><div class="stars">⭐⭐⭐⭐⭐</div><p class="test-txt">"Bought a full newborn set for my son here. The quality is excellent — soft fabrics, good stitching. They have everything from onesies to tiny accessories. Very happy!"</p><div class="test-auth"><div class="test-av" style="background:var(--sky-l);color:var(--sky)">RD</div><div><div class="test-name">Rajesh Desai</div><div class="test-loc">Surat, Gujarat</div></div></div></div>
+    <div class="test-card reveal d2"><div class="stars">⭐⭐⭐⭐⭐</div><p class="test-txt">"My family has been shopping at AAVKAR since I was a child! Now I bring my own kids here. 40 years and still the best kids' store in Bardoli. Very trustworthy!"</p><div class="test-auth"><div class="test-av" style="background:var(--mint-l);color:var(--mint)">AK</div><div><div class="test-name">Anita Kapadia</div><div class="test-loc">Bardoli, Gujarat</div></div></div></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<div class="contact" id="contact">
+  <div class="contact-l">
+    <p class="sec-tag" style="color:rgba(59,184,240,0.7)">Get in Touch</p>
+    <h2 class="contact-title">Visit us or say <span style="color:var(--yellow)">Hello! 👋</span></h2>
+    <p class="contact-sub">We'd love to help you find the perfect outfit for your little one. Come visit us or message on WhatsApp!</p>
+    <div class="info-item reveal"><div class="info-icon" style="background:rgba(59,184,240,0.1)">📍</div><div><div class="info-lbl">Store Location</div><div class="info-val">AAVKAR Collection, Bardoli,<br>Surat District, Gujarat — 394601</div></div></div>
+    <div class="info-item reveal d1"><div class="info-icon" style="background:rgba(37,211,102,0.1)">💬</div><div><div class="info-lbl">WhatsApp</div><div class="info-val"><a href="https://wa.me/919586555156" target="_blank">+91 95865 55156</a></div></div></div>
+    <div class="info-item reveal d2"><div class="info-icon" style="background:rgba(255,202,40,0.1)">🕐</div><div><div class="info-lbl">Store Hours</div><div class="info-val">Mon–Sat: 10:00 AM – 8:00 PM<br>Sunday: 11:00 AM – 6:00 PM</div></div></div>
+    <div class="info-item reveal d3"><div class="info-icon" style="background:rgba(240,80,110,0.1)">📸</div><div><div class="info-lbl">Instagram</div><div class="info-val"><a href="https://www.instagram.com/aavkar_collection" target="_blank">@aavkar_collection</a></div></div></div>
+    <div class="info-item reveal d3"><div class="info-icon" style="background:rgba(59,184,240,0.1)">🗺️</div><div><div class="info-lbl">Google Maps</div><div class="info-val"><a href="https://www.google.com/maps/place/AAVKAR+COLLECTION/@21.1292596,73.1073118,17z" target="_blank">Open in Google Maps →</a></div></div></div>
+  </div>
+  <div class="contact-r">
+    <h3 class="form-title">Send us a message 💌</h3>
+    <div id="cform">
+      <div class="frow">
+        <div class="fg"><label>Your Name</label><input type="text" id="fn" placeholder="Your name"></div>
+        <div class="fg"><label>Phone / WhatsApp</label><input type="tel" id="fp" placeholder="+91 XXXXX XXXXX"></div>
+      </div>
+      <div class="fg"><label>Child's Age Group</label>
+        <select id="fa">
+          <option value="">Select age group...</option>
+          <option>👶 Newborn (0–12 months)</option>
+          <option>🧒 Baby (1–3 years)</option>
+          <option>👧 Girls (4–8 years)</option>
+          <option>👧 Girls (9–13 years)</option>
+          <option>👦 Boys (4–8 years)</option>
+          <option>👦 Boys (9–13 years)</option>
+          <option>🎉 Festival / Wedding outfit</option>
+          <option>🧸 Toys or Accessories</option>
+        </select>
+      </div>
+      <div class="fg"><label>What are you looking for?</label><textarea id="fm" placeholder="E.g. a frock for Navratri for my 5-year-old daughter, budget around ₹500..."></textarea></div>
+      <button class="btn-sub" onclick="sendMsg()">Send Message 💬</button>
+    </div>
+    <div class="fsuccess" id="fsuccess"><div class="fs-emoji">🎉</div><div class="fs-msg">Message Received!</div><div class="fs-sub">We'll reach you on WhatsApp very soon. Thank you!</div></div>
+  </div>
+</div>
+
+<!-- MAP -->
+<div class="map-wrap">
+  <div class="map-tag"><div class="map-dot"></div> AAVKAR Collection, Bardoli</div>
+  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3727.7!2d73.1073118!3d21.1292596!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be067ba44665509%3A0xaa2f4749473ce9bf!2sAAVKAR%20COLLECTION!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="AAVKAR Collection"></iframe>
+</div>
+
+<footer>
+  <div class="foot-top">
+    <div>
+      <div class="foot-logo">AAVKAR <span>Collection</span> 🧒</div>
+      <p class="foot-about">Bardoli's most loved children's fashion store since 1985. Adorable kids wear, newborn accessories and toys — all under one roof!</p>
+    </div>
+    <div>
+      <div class="foot-col-title">Categories</div>
+      <ul class="foot-links">
+        <li><a href="#categories">👶 Newborn (0–1 yr)</a></li>
+        <li><a href="#categories">🧒 Baby (1–4 yrs)</a></li>
+        <li><a href="#categories">👧 Girls (5–13 yrs)</a></li>
+        <li><a href="#categories">👦 Boys (5–13 yrs)</a></li>
+        <li><a href="#categories">🧸 Toys & Accessories</a></li>
+        <li><a href="#categories">🎉 Festival Wear</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="foot-col-title">Connect</div>
+      <ul class="foot-links">
+        <li><a href="https://wa.me/919586555156" target="_blank">💬 WhatsApp</a></li>
+        <li><a href="https://www.instagram.com/aavkar_collection" target="_blank">📸 @aavkar_collection</a></li>
+        <li><a href="https://www.google.com/maps/place/AAVKAR+COLLECTION/@21.1292596,73.1073118,17z" target="_blank">🗺️ Google Maps</a></li>
+      </ul>
+      <div style="margin-top:16px;font-size:12px;color:rgba(255,255,255,0.3);line-height:1.9;font-weight:600">Mon–Sat: 10am–8pm<br>Sunday: 11am–6pm</div>
+    </div>
+  </div>
+  <div class="foot-bottom"><span>© 2025 AAVKAR Collection, Bardoli · Est. 1985</span><span>Made with ❤️ for Bardoli's kids</span></div>
+</footer>
+
+<div class="sfloat">
+  <a href="https://wa.me/919586555156" class="sfbtn sf-wa" target="_blank" title="WhatsApp"><svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+  <a href="https://www.instagram.com/aavkar_collection" class="sfbtn sf-ig" target="_blank" title="Instagram"><svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+</div>
+
+<script>
+window.addEventListener('scroll',()=>{const n=document.getElementById('main-nav');if(n)n.style.boxShadow=window.scrollY>30?'0 4px 24px rgba(59,184,240,0.12)':''});
+function openMob(){document.getElementById('mob-nav').style.display='flex'}
+function closeMob(){document.getElementById('mob-nav').style.display='none'}
+const revs=document.querySelectorAll('.reveal');
+const ro=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');ro.unobserve(e.target)}})},{threshold:0.1});
+revs.forEach(r=>ro.observe(r));
+function sendMsg(){const n=document.getElementById('fn').value.trim(),p=document.getElementById('fp').value.trim();if(!n||!p){alert('Please enter your name and phone number 😊');return}document.getElementById('cform').style.display='none';document.getElementById('fsuccess').classList.add('show')}
+</script>
+</body>
+</html>
